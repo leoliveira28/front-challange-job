@@ -27,36 +27,43 @@ interface DataProps {
 }
 
 interface HomeProp {
-  data: {
-    name: string;
-    adress: {
+      name: string;
+      ri_number: string;
+      status: string;
+      _id: string;
+      address: {
       city: string;
       street: string;
       number: string;
       district: string;
-      
-    }
+      }
   }
+
+  interface DataProp {
+    data: HomeProp[];
   }
   
 
-export default function Home( {data}: HomeProp) {
-  const results = data?.map(item => {
+export default  function Home( {data}: DataProp) {
+ /*  const results = data.map(item => {
     return {
       _id: item._id,
        name: item.name,
        status: item.status,
        ri_number: item.ri_number,
-       address: {
-         city: item.address.city,
-         street: item.address.street,
-         number: item.address.number,
-         district: item.address.district
+       adress: {
+         city: item.adress.street,
+         street: item.adress.number,
+         number: item.adress.district,
+         district: item.adress.city
        } 
       }
     }
-  )
-console.log(results)
+  ) */
+//console.log(results)
+data.map(item => {
+  console.log(item.address.city)
+})
 
   return (
     <>
@@ -64,15 +71,15 @@ console.log(results)
       <SearchBox />
 
     <Container>
-        {results.map(item => {
+        {  data?.map(item => {
           return (
             <Content>
               <span>{item.name}</span>
-            <address>{item.adress.street}, {item.adress.number} - {item.adress.district}, {item.adress.city}</address>
+              <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
             </Content>
             
           )
-        })}   
+        })}    
             
     </Container>
     </>
