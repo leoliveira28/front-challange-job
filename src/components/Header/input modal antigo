@@ -1,0 +1,69 @@
+
+               <form onSubmit={sendInfo}>
+                   <h2>Cadastrar empreendimento</h2>
+
+                <label htmlFor="Lançamento">Lançamento</label>
+                <input id="#" name="Lançamento" type="select"  required />
+                <label htmlFor="Nome do empreendimento">Nome do empreendimento</label>
+                <input id="#" name="Nome do empreendimento" type="text"  required />
+
+                <label htmlFor="Residencial">Residencial</label>
+                <input id="#" name="Residencial" type="text"  required />
+
+                <label htmlFor="CEP">CEP</label>
+                <input id="#" name="CEP" type="text" required />
+                <div className='cep-info'>
+                    Av. Anselmo Liso
+                    Jd. Numes
+                    São José do Rio Preto
+                    SP  
+                </div>
+                <button type="submit">Cadastrar</button>
+                </form>
+
+
+                <Dropdown
+                   formLabel="Lançamento"
+                   onChange={handleSelect}
+                   onSubmit={sendInfo}
+                   action="/"
+                 >
+                   <Option value="Breve lançamento"  />
+                   <Option value="Lançamento" />
+                   <Option value="Em obras" />
+                   <Option value="Pronto para morar" />
+                 </Dropdown>
+                 <label htmlFor="Nome do empreendimento">Lançamento</label>
+                 <input type="text" name='Nome do empreendimento' placeholder="Nome do empreendimento" />
+                 <Dropdown
+                   formLabel="Residencial"
+                   onChange={handleSelect}
+                   action="/"
+                 >
+                   <Option value="Residencial"  />
+                   <Option value="Comercial" />
+                   </Dropdown>
+
+
+
+
+                   <form>
+                 <h2>Editar Empreendimento</h2>
+                 <label htmlFor="lancamento">Lançamento</label>
+                 <select id='lancamento' name='Lançamento'>
+                   <option value='breve-lancamento' selected>Breve lançamento</option>
+                   <option value="lancamento">Lançamento</option>
+                   <option value="em-obras">Em obras</option>
+                   <option value="pronto-para-morar">Pronto para morar</option>
+                 </select>
+                 <label htmlFor="Nome do empreendimento">Nome do empreendimento</label>
+                <input id="#" name="Nome do empreendimento" type="text"  required />
+                <label htmlFor="Residencial">Residencial</label>
+                 <select id='residencial' name='residencial'>
+                   <option>Residencial</option>
+                   <option>Comercial</option>
+                   </select>
+                 <label htmlFor="CEP">CEP</label>
+                 <input type="text" name='CEP' placeholder="CEP" />
+                 <button type="submit">Cadastrar</button>
+               </form>

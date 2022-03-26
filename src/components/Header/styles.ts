@@ -15,7 +15,7 @@ export const Content = styled.div`
     align-items: center;
     justify-content: space-between;
 
-button {
+    button {
     
     background: #4F46BB;
     color: #fff;
@@ -28,7 +28,7 @@ button {
     padding: 10px 40px;
     width: 150px;
     cursor: pointer;
-
-
 }
+
+
 `;

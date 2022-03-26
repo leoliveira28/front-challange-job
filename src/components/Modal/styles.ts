@@ -9,18 +9,19 @@ export const Wrapper = styled.div`
   width: inherit;
   outline: 0;
   
-  form { 
+  .container { 
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    padding: 30px;
-
+    margin-top: 10px;
+    padding: 0.5rem;
+    justify-content: center;
+    
     h2 {
         margin: 5px;
-        padding: 5px;
+        padding: 2px;
     }
     label {
-        padding: 5px;
+        padding: 2px;
     }
     input {
         border-top-style: hidden;
@@ -37,8 +38,9 @@ export const Wrapper = styled.div`
       height: 36px;
       border: 0;
       color: #FFFF;
+      
   }
-
+  
   }
 
 

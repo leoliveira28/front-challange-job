@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
+import { Button, Dropdown, Option } from '../Dropdown';
 import { Modal } from '../Modal';
 import { Container, Content } from './styles';
 
@@ -17,6 +18,13 @@ export function Header() {
       const sendInfo = async (event: { preventDefault: () => void; }) => {
         event.preventDefault()
       }
+      const [optionValue, setOptionValue] = useState("");
+      const handleSelect = (e: { target: { value: SetStateAction<string>; }; }) => {
+        console.log(e.target.value);
+        setOptionValue(e.target.value);
+      };
+  
+   
       
     return(
         <Container>
@@ -24,27 +32,28 @@ export function Header() {
                 <img src='/Title.svg' alt='Logo azul com texto empreendimentos em caixa alta'></img>
                 <button onClick={toggle} type='button'>Adicionar +</button>
                <Modal isShown={isShown} hide={toggle} modalContent={
-               <form onSubmit={sendInfo}>
-                   <h2>Cadastrar empreendimento</h2>
-
-                <label htmlFor="Lançamento">Lançamento</label>
-                <input id="#" name="Lançamento" type="text"  required />
-                <label htmlFor="Nome do empreendimento">Nome do empreendimento</label>
-                <input id="#" name="Nome do empreendimento" type="text"  required />
-
-                <label htmlFor="Residencial">Residencial</label>
-                <input id="#" name="Residencial" type="text"  required />
-
-                <label htmlFor="CEP">CEP</label>
-                <input id="#" name="CEP" type="text" required />
-                <div className='cep-info'>
-                    Av. Anselmo Liso
-                    Jd. Numes
-                    São José do Rio Preto
-                    SP  
-                </div>
-                <button type="submit">Cadastrar</button>
-                </form>}/>
+                    <div className='container'>
+                    <h2>Editar empreendimento</h2>
+                   <Dropdown
+                   formLabel="Lançamento"
+                   onChange={handleSelect}                  
+                 >
+                   <Option value="Breve lançamento"  />
+                   <Option value="Lançamento"  />
+                   <Option value="Em obras"  />
+                   <Option value="Pronto para morar"  />
+                 </Dropdown>
+                   <Dropdown
+                   formLabel="Residencial"
+                   onChange={handleSelect}
+                   
+                 >
+                   <Option value="Residencial"  />
+                   <Option value="Comercial" />
+                   </Dropdown>
+                   <Button />
+                   </div>
+               }/>
                 
             </Content>
         </Container>
