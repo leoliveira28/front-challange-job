@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
+
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from 'styled-components'
 import { api, getCep } from "../../services/api";
-
+import Router from 'next/router'
 interface AddressProps {
     logradouro: string;
     bairro: string;
@@ -13,7 +13,7 @@ interface AddressProps {
 
 const Modal = ({ show, onClose, children, title }) => {
   
-  const router = useRouter()
+  
   const [isBrowser, setIsBrowser] = useState(false);
   const [buildStatus, setBuildStatus] = useState("");
   const handleSelectStatus = (e) => {
@@ -73,7 +73,7 @@ const Modal = ({ show, onClose, children, title }) => {
     }
     
   )
-    router.push('/')
+    Router.reload()
     onClose()
 
     
