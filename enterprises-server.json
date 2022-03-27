@@ -46,33 +46,18 @@
       }
     },
     {
-      "id": 41,
-      "name": "Rio Lima",
-      "status": "lancamento",
-      "purpose": "Comercial",
+      "id": 5,
+      "name": "Casa da rose",
+      "status": "pronto-para-morar",
+      "purpose": "",
       "ri_number": "1233212",
       "address": {
-        "district": "Jd Nunes",
-        "city": "Rio Preto",
-        "street": "Av. Anselmo Liso",
+        "district": "Parque Residencial do Lago",
+        "city": "Votuporanga",
+        "street": "Rua Leonor Leão Zeitune",
         "state": "SP",
         "number": "56",
-        "cep": "15046140"
-      }
-    },
-    {
-      "id": 27,
-      "name": "Rio Ebro",
-      "status": "em-obras",
-      "purpose": "Comercial",
-      "ri_number": "1233212",
-      "address": {
-        "district": "Jd Nunes",
-        "city": "Rio Preto",
-        "street": "Av. Anselmo Liso",
-        "state": "SP",
-        "number": "56",
-        "cep": "15046140"
+        "cep": "15505103"
       }
     }
   ]

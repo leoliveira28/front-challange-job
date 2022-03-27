@@ -2,8 +2,17 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from 'styled-components'
-import { api } from "../../services/api";
+import { api, getCep } from "../../services/api";
+
+interface AddressProps {
+    logradouro: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
+  }
+
 const Modal = ({ show, onClose, children, title }) => {
+  
   const router = useRouter()
   const [isBrowser, setIsBrowser] = useState(false);
   const [buildStatus, setBuildStatus] = useState("");
@@ -27,9 +36,25 @@ const Modal = ({ show, onClose, children, title }) => {
   const handleCep = (e) => {
     console.log(e.target.value);
     setCep(e.target.value);
-  }
+     }
+  const [cepData, setCepData] = useState(null);
+  const [isLoading, setLoading] = useState(true)
+  async function getCepInfo() {
+    const results = await getCep.get(`${cep}/json`)
+    .then(res => res.data)
+    setCepData(results)
+    setLoading(false)
+    }
 
-  const [newInfo, setNewInfo] = useState("");
+    
+
+    useEffect(() => {
+
+          }, [])
+    
+    console.log(isLoading)
+    
+
   const handleNewInfo = (e) => {
     api.post('http://localhost:3001/enterprises', {
     id: Math.floor(Math.random() * 101),
@@ -38,35 +63,39 @@ const Modal = ({ show, onClose, children, title }) => {
     purpose: String(buildType),
     ri_number: '1233212',
     address: {
-      district: "Jd Nunes",
-      city: "Rio Preto",
-      street: "Av. Anselmo Liso",
-      state: "SP",
+      district: cepData.bairro,
+      city: cepData.localidade,
+      street: cepData.logradouro,
+      state: cepData.uf,
       number: '56',
-      cep: '15046140'
+      cep: cep
     }
     }
     
   )
     router.push('/')
     onClose()
-    console.log(cep, enterpriseName, buildType, buildStatus)
+
+    
   }
 
   useEffect(() => {
     setIsBrowser(true);
+    
+
   }, []);
 
   const handleCloseClick = (e) => {
     e.preventDefault();
     onClose();
+    
   };
 
   const modalContent = show ? (
     <StyledModalOverlay>
       <StyledModal>
         <StyledModalHeader>
-          <button onSubmit={handleCloseClick}>
+          <button onClick={handleCloseClick}>
             x
           </button>
         </StyledModalHeader>
@@ -88,10 +117,24 @@ const Modal = ({ show, onClose, children, title }) => {
                    <option>Residencial</option>
                    <option>Comercial</option>
                    </select>
-                 <label htmlFor="CEP">CEP</label>
-                 <input onChange={handleCep} type="number" name='CEP' placeholder="CEP" />
-                 <button  type="submit">Cadastrar</button>
+                   <label htmlFor="CEP">CEP</label>
+                 <div className='cep'>
+                 
+                 <input onChange={handleCep} type="number" name='CEP' placeholder="CEP"/>
+                 <button type="button" onClick={getCepInfo}>Buscar</button>
+                 </div>
+                 {isLoading ? <p>Carregando...</p> :
+                 <div>
+                    <address>{cepData.logradouro}</address>
+                     <address>{cepData.bairro}</address>
+                     <address>{cepData.localidade}</address>
+                     <address>{cepData.uf}</address>
+
+                 </div>
+                 }
+                 <button type="submit">Cadastrar</button>
         </form>
+        
         }</StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>
@@ -111,15 +154,15 @@ const StyledModalTitle = styled.h2`
   margin: 10px;
 `;
 const StyledModalBody = styled.div`
-  padding-top: 10px;
+  padding-top: 5px;
 
   form {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 5px;
   justify-content: center;
-
+  
   select {
   max-width: 100%;
   height: 50px;
@@ -155,6 +198,25 @@ const StyledModalBody = styled.div`
     cursor: pointer;
     margin-top: 10px;
   }
+  .cep {
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 50%;
+      margin: 10px;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-self: baseline;
+    }
+    p {
+      padding: 10px;
+
+    }
+  }
   }
   
 `;
@@ -176,7 +238,7 @@ const StyledModalHeader = styled.div`
 const StyledModal = styled.div`
   background: white;
   width: 500px;
-  height: 600px;
+  height: 650px;
   border-radius: 15px;
   padding: 15px;
 `;
