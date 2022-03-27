@@ -21,7 +21,7 @@ interface OptionProps {
 }
 
 export function Dropdown(props) {
- 
+    
    return (
     <DropdownWrapper action={props.action}>
       <StyledLabel htmlFor="services">
@@ -47,6 +47,6 @@ export function Option(props){
 
 export function Button(props) {
   return (
-    <StyledButton type="submit"  value={props.buttonText} />
+    <StyledButton type="submit" value={props.buttonText} />
   )
 }

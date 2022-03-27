@@ -6,6 +6,8 @@ import { Header } from '../components/Header'
 import { SearchBox } from '../components/SearchBox'
 import { api } from '../services/api'
 
+
+
 interface EnterpriseProps {
   name: string;
   _id: string;
@@ -45,22 +47,7 @@ interface HomeProp {
   
 
 export default  function Home( {data}: DataProp) {
- /*  const results = data.map(item => {
-    return {
-      _id: item._id,
-       name: item.name,
-       status: item.status,
-       ri_number: item.ri_number,
-       adress: {
-         city: item.adress.street,
-         street: item.adress.number,
-         number: item.adress.district,
-         district: item.adress.city
-       } 
-      }
-    }
-  ) */
-//console.log(results)
+
 data.map(item => {
   console.log(item.address.city)
 })
@@ -68,11 +55,13 @@ data.map(item => {
   return (
     <>
     <Header />
+    
       <SearchBox />
 
     <Container>
         {  data?.map(item => {
           return (
+            
             <Content>
               <span>{item.name}</span>
               <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
