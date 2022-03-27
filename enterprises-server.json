@@ -44,6 +44,36 @@
         "state": "SP",
         "cep": "60000000"
       }
+    },
+    {
+      "id": 41,
+      "name": "Rio Lima",
+      "status": "lancamento",
+      "purpose": "Comercial",
+      "ri_number": "1233212",
+      "address": {
+        "district": "Jd Nunes",
+        "city": "Rio Preto",
+        "street": "Av. Anselmo Liso",
+        "state": "SP",
+        "number": "56",
+        "cep": "15046140"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Rio Ebro",
+      "status": "em-obras",
+      "purpose": "Comercial",
+      "ri_number": "1233212",
+      "address": {
+        "district": "Jd Nunes",
+        "city": "Rio Preto",
+        "street": "Av. Anselmo Liso",
+        "state": "SP",
+        "number": "56",
+        "cep": "15046140"
+      }
     }
   ]
 }
