@@ -89,6 +89,21 @@
         "number": "56",
         "cep": "15046140"
       }
+    },
+    {
+      "id": 46,
+      "name": "Rios de Italia",
+      "status": "Pronto para morar",
+      "purpose": "Comercial",
+      "ri_number": "1233212",
+      "address": {
+        "district": "Jardim Nunes",
+        "city": "São José do Rio Preto",
+        "street": "Avenida Anselmo Liso",
+        "state": "SP",
+        "number": "56",
+        "cep": "15046790"
+      }
     }
   ]
 }

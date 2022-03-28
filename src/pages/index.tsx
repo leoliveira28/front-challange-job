@@ -6,54 +6,37 @@ import Modal from '../components/Modal';
 import { SearchBox } from '../components/SearchBox'
 import { api } from '../services/api';
 import Router from 'next/router'
-import { useRouter } from 'next/router';
-import PagesManifestPlugin from 'next/dist/build/webpack/plugins/pages-manifest-plugin';
 
-
-
-interface EnterpriseProps {
-  name: string;
+export interface Enterprise {
   id: string;
+  name: string;
   status: string;
+  purpose: string;
   ri_number: string;
-  adress: {
-      district: string;
-      city: string;
-      street: string;
-      state: string;
-      number: string;
-      cep: string;
-  }
-
+  address: {
+    district: string;
+    city: string;
+    street: string;
+    state: string;
+    number: string;
+    cep: string;
+  };
 }
 
-interface DataProps {
-  data: EnterpriseProps[];
+interface EnterprisesProps {
+  enterprises: Enterprise[],
+  setEnterprises: ([]) => void,
+  page: number
 }
 
-interface HomeProp {
-      name: string;
-      ri_number: string;
-      status: string;
-      id: string;
-      purpose: string;
-      address: {
-      city: string;
-      street: string;
-      number: string;
-      district: string;
-      }
-  }
-
-  interface DataProp {
-    data: HomeProp[];
-    
+  interface HomeProps {
+    data: Enterprise[]
   }
   
 
-export default  function Home( {data}: DataProp ) {
+export default  function Home( {data}: HomeProps ) {
   const [showModal, setShowModal] = useState(false);
-  
+  const [enterprises, setEnterprises] = useState<Enterprise[]>(data)
 
   function handleDeleteEnterprise(event: { currentTarget: { id: any; }; }) {
       const itemId = event.currentTarget.id
@@ -63,16 +46,16 @@ export default  function Home( {data}: DataProp ) {
 
   }
   const [currentPage, setCurrentPage] = useState(1)
-  const [pageLimit, setPageLimit] = useState(5)
+  
   const [newPages, setNewPages] = useState();
   const [newData, setNewData] = useState();
-  console.log(currentPage)
+
 
   async function handlePagination(){
-        const pages = await api.get(`http://localhost:3001/enterprises`)
-        .then(response => setNewPages(response.data))
+        const pages = await api.get(`/enterprises?_page=${currentPage + 1}&_limit=2`)
+        setEnterprises([...enterprises, ...pages.data])
          setCurrentPage(currentPage + 1)
-         setPageLimit(pageLimit + 1)
+       
         console.log(newPages)
   }
   
@@ -83,7 +66,7 @@ export default  function Home( {data}: DataProp ) {
       <SearchBox />
 
     <Container>
-        {  data?.map(item => {
+        {  enterprises?.map(item => {
           return (
             <>
             <Content>
@@ -93,7 +76,8 @@ export default  function Home( {data}: DataProp ) {
               <span className="tag">{item.status}</span>
               <span className="tag1">{item.purpose}</span>
                </span>
-              <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
+              <address>{item.address.street}, {item.address.number} - {item.address.district}</address>
+              <address>{item.address.city}</address> 
             </Content>
             
             <Modal
@@ -105,25 +89,7 @@ export default  function Home( {data}: DataProp ) {
             </>    
           )
         })}
-
-          {newPages?.map(item =>{
-          return (
-            <>
-            <Content>
-              <span id={item.id} key={item.id}>{item.name}
-             <button onClick={() => setShowModal(true)}><BiEditAlt /></button>
-              <button id={item.id}onClick={handleDeleteEnterprise}><BiTrash /></button>
-              <span className="tag">{item.status}</span>
-              <span className="tag1">{item.purpose}</span>
-               </span>
-               
-              <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
-         
-          </Content>
-          </>
-          )
-        })}
-        
+    
           <button className="btn" onClick={handlePagination}>Carregar mais</button>
              
 
@@ -135,7 +101,7 @@ export default  function Home( {data}: DataProp ) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3001/enterprises`)
+  const res = await fetch(`http://localhost:3001/enterprises?_page=1&_limit=2`)
   const data = await res.json()
   console.log(data)
   // Pass data to the page via props

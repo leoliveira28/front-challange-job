@@ -1,40 +1,40 @@
 
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import styled from 'styled-components'
 import { api, getCep } from "../../services/api";
 import Router from 'next/router'
-interface AddressProps {
-    logradouro: string;
-    bairro: string;
-    localidade: string;
-    uf: string;
-  }
+import { StyledModal, StyledModalBody, StyledModalHeader, StyledModalOverlay, StyledModalTitle } from "./styles";
 
-const Modal = ({ show, onClose, children, title }) => {
+interface ModalProps {
+  show: boolean;
+  onClose: () => void;
+  title?: string;
+}
+
+const Modal = ({ show, onClose, children, title }: ModalProps) => {
   
   
   const [isBrowser, setIsBrowser] = useState(false);
   const [buildStatus, setBuildStatus] = useState("");
-  const handleSelectStatus = (e) => {
-    console.log(e.target.value);
+  const handleSelectStatus = (e: { target: { value: SetStateAction<string>; }; }) => {
+    
     setBuildStatus(e.target.value);
   };
 
   const [buildType, setBuildType] = useState("");
-  const handleBuildType = (e) => {
-    console.log(e.target.value);
+  const handleBuildType = (e: { target: { value: SetStateAction<string>; }; }) => {
+    
     setBuildType(e.target.value);
   }
   const [enterpriseName, setEnterpriseName] = useState("");
-  const handleEnterpriseName = (e) => {
-    console.log(e.target.value);
+  const handleEnterpriseName = (e: { target: { value: SetStateAction<string>; }; }) => {
+    
     setEnterpriseName(e.target.value);
   }
 
   const [cep, setCep] = useState("");
-  const handleCep = (e) => {
-    console.log(e.target.value);
+  const handleCep = (e: { target: { value: SetStateAction<string>; }; }) => {
+    
     setCep(e.target.value);
      }
   const [cepData, setCepData] = useState(null);
@@ -45,17 +45,9 @@ const Modal = ({ show, onClose, children, title }) => {
     setCepData(results)
     setLoading(false)
     }
-
     
 
-    useEffect(() => {
-
-          }, [])
-    
-    console.log(isLoading)
-    
-
-  const handleNewInfo = (e) => {
+  const handleNewInfo = () => {
     api.post('http://localhost:3001/enterprises', {
     id: Math.floor(Math.random() * 101),
     name: enterpriseName,
@@ -85,7 +77,7 @@ const Modal = ({ show, onClose, children, title }) => {
 
   }, []);
 
-  const handleCloseClick = (e) => {
+  const handleCloseClick = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     onClose();
     
@@ -150,108 +142,6 @@ const Modal = ({ show, onClose, children, title }) => {
   }
 };
 
-const StyledModalTitle = styled.h2`
-  margin: 10px;
-`;
-const StyledModalBody = styled.div`
-  padding-top: 5px;
 
-  form {
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  padding: 5px;
-  justify-content: center;
-  
-  select {
-  max-width: 100%;
-  height: 50px;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
- 
-  }
-  label {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  input {
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: groove #BBB8D9;
-        margin-top: 10px;
-        height: 50px;
-  }
-
-  button {
-    background: #4F46BB;
-    color: #fff;
-    border: 0;
-    border-radius: 71px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 40px;
-    width: 150px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .cep {
-    display: flex;
-    align-items: center;
-
-    input {
-      width: 50%;
-      margin: 10px;
-    }
-    button {
-      width: 50px;
-      height: 50px;
-      justify-content: center;
-      align-self: baseline;
-    }
-    p {
-      padding: 10px;
-
-    }
-  }
-  }
-  
-`;
-
-const StyledModalHeader = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 25px;
-
-  button {
-    border: 0;
-    padding: 1px;
-    margin: 10px;
-    background: #fff;
-    height: 10px;
-  }
-`;
-
-const StyledModal = styled.div`
-  background: white;
-  width: 500px;
-  height: 650px;
-  border-radius: 15px;
-  padding: 15px;
-`;
-const StyledModalOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
 
 export default Modal;

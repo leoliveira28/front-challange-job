@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    widows: 1140px ;
+    width: 1140px ;
     
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ export const Container = styled.div`
     height: 30px;
     width: 150px;
     cursor: pointer;
-    margin-top: 10px;
+    margin: 30px;
 
     }
 `;
@@ -43,14 +43,14 @@ button {
     background-color: #FFFFFF;
 }
 .tag {
-    margin-left: 80%;
-    align-self: flex-end;
+    margin-left: 50%;
+    //align-self: flex-end;
     border: 1px solid;
     border-radius: 8px;
     padding: 3px;
 }
 .tag1 {
-    margin-left: 10px;
+    margin-left: 5px;
     border: 1px solid;
     border-radius: 8px;
     padding: 3px;
