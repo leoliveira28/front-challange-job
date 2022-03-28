@@ -7,6 +7,7 @@ import { SearchBox } from '../components/SearchBox'
 import { api } from '../services/api';
 import Router from 'next/router'
 import { useRouter } from 'next/router';
+import PagesManifestPlugin from 'next/dist/build/webpack/plugins/pages-manifest-plugin';
 
 
 
@@ -35,6 +36,7 @@ interface HomeProp {
       ri_number: string;
       status: string;
       id: string;
+      purpose: string;
       address: {
       city: string;
       street: string;
@@ -51,17 +53,29 @@ interface HomeProp {
 
 export default  function Home( {data}: DataProp ) {
   const [showModal, setShowModal] = useState(false);
-  const [dataId, setDataId] = useState('');
+  
 
-  function handleDeleteEnterprise(event) {
+  function handleDeleteEnterprise(event: { currentTarget: { id: any; }; }) {
       const itemId = event.currentTarget.id
       api.delete(`http://localhost:3001/enterprises/${itemId}`)
       
       Router.reload()
 
   }
-  //
-console.log(data.id)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageLimit, setPageLimit] = useState(5)
+  const [newPages, setNewPages] = useState();
+  const [newData, setNewData] = useState();
+  console.log(currentPage)
+
+  async function handlePagination(){
+        const pages = await api.get(`http://localhost:3001/enterprises`)
+        .then(response => setNewPages(response.data))
+         setCurrentPage(currentPage + 1)
+         setPageLimit(pageLimit + 1)
+        console.log(newPages)
+  }
+  
   return (
     <>
     <Header />
@@ -73,9 +87,11 @@ console.log(data.id)
           return (
             <>
             <Content>
-              <span id={item.id} key={item.id}>{item.name} {item.id} 
-             <button onClick={() => setShowModal(true)}><BiEditAlt /></button>
+              <span id={item.id} key={item.id}>{item.name} 
+              <button onClick={() => setShowModal(true)}><BiEditAlt /></button>
               <button id={item.id}onClick={handleDeleteEnterprise}><BiTrash /></button>
+              <span className="tag">{item.status}</span>
+              <span className="tag1">{item.purpose}</span>
                </span>
               <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
             </Content>
@@ -88,8 +104,29 @@ console.log(data.id)
             </Modal>
             </>    
           )
-        })}    
-            
+        })}
+
+          {newPages?.map(item =>{
+          return (
+            <>
+            <Content>
+              <span id={item.id} key={item.id}>{item.name}
+             <button onClick={() => setShowModal(true)}><BiEditAlt /></button>
+              <button id={item.id}onClick={handleDeleteEnterprise}><BiTrash /></button>
+              <span className="tag">{item.status}</span>
+              <span className="tag1">{item.purpose}</span>
+               </span>
+               
+              <address>{item.address.street}, {item.address.number} - {item.address.district}, {item.address.city}</address>
+         
+          </Content>
+          </>
+          )
+        })}
+        
+          <button className="btn" onClick={handlePagination}>Carregar mais</button>
+             
+
     </Container>
     </>
   )

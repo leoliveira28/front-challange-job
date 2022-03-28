@@ -58,9 +58,9 @@ const Modal = ({ show, onClose, children, title }) => {
   const handleNewInfo = (e) => {
     api.post('http://localhost:3001/enterprises', {
     id: Math.floor(Math.random() * 101),
-    name: String(enterpriseName),
-    status: String(buildStatus),
-    purpose: String(buildType),
+    name: enterpriseName,
+    status: buildStatus,
+    purpose: buildType,
     ri_number: '1233212',
     address: {
       district: cepData.bairro,
@@ -105,10 +105,10 @@ const Modal = ({ show, onClose, children, title }) => {
               
                  <label htmlFor="lancamento">Lançamento</label>
                  <select onChange={handleSelectStatus }id='lancamento' name='Lançamento'>
-                   <option  value='breve-lancamento' >Breve lançamento</option>
-                   <option value="lancamento">Lançamento</option>
-                   <option value="em-obras">Em obras</option>
-                   <option value="pronto-para-morar">Pronto para morar</option>
+                   <option  value='Breve lançamento' >Breve lançamento</option>
+                   <option value="Lançamento">Lançamento</option>
+                   <option value="Em obras">Em obras</option>
+                   <option value="Pronto para morar">Pronto para morar</option>
                  </select>
                  <label htmlFor="Nome do empreendimento">Nome do empreendimento</label>
                 <input onChange={handleEnterpriseName} id="#" name="Nome do empreendimento" type="text"  required />

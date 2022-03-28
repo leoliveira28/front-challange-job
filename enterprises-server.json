@@ -29,6 +29,66 @@
         "state": "SP",
         "cep": "60000000"
       }
+    },
+    {
+      "id": "PA04",
+      "name": "Sirius Campinas",
+      "status": "RELEASE",
+      "purpose": "HOME",
+      "ri_number": "987654",
+      "address": {
+        "street": "Av. Aquidabã",
+        "number": "280",
+        "district": "Zona Heteleira Aquidabã",
+        "city": "Campinas",
+        "state": "SP",
+        "cep": "60000000"
+      }
+    },
+    {
+      "id": "PA05",
+      "name": "Sirius Campinas",
+      "status": "RELEASE",
+      "purpose": "HOME",
+      "ri_number": "987654",
+      "address": {
+        "street": "Av. Aquidabã",
+        "number": "280",
+        "district": "Zona Heteleira Aquidabã",
+        "city": "Campinas",
+        "state": "SP",
+        "cep": "60000000"
+      }
+    },
+    {
+      "id": "PA06",
+      "name": "Sirius Campinas",
+      "status": "RELEASE",
+      "purpose": "HOME",
+      "ri_number": "987654",
+      "address": {
+        "street": "Av. Aquidabã",
+        "number": "280",
+        "district": "Zona Heteleira Aquidabã",
+        "city": "Campinas",
+        "state": "SP",
+        "cep": "60000000"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Rio Ebro",
+      "status": "Lançamento",
+      "purpose": "Comercial",
+      "ri_number": "1233212",
+      "address": {
+        "district": "Parque Residencial Dom Lafayete Libanio",
+        "city": "São José do Rio Preto",
+        "street": "Rua Afonso Cortezi",
+        "state": "SP",
+        "number": "56",
+        "cep": "15046140"
+      }
     }
   ]
 }
