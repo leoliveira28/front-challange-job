@@ -3,7 +3,7 @@ import  Router  from "next/router";
 import { useState } from "react";
 import { BiEditAlt, BiTrash } from "react-icons/bi"
 import { api } from "../../services/api";
-import { Content } from "./styles";
+import { Adress, Content, EnterpriseContainer, Tag } from "./styles";
 
 import ModalEdit from "../ModalEdit";
 
@@ -51,14 +51,14 @@ export function EnterpriseInfo({enterprises }: Props) {
             return (
               <>
               <Content  key={item.id}>
-                <span id={item.id} >{item.name} 
+                <EnterpriseContainer id={item.id} >{item.name} 
                 <button onClick={editEnterprise}><BiEditAlt /></button>
                 <button id={item.id}onClick={handleDeleteEnterprise}><BiTrash /></button>
-                <span className="tag">{item.status}</span>
-                <span className="tag1">{item.purpose === "RELEASE" ? "Lançamento" : (item.purpose === "HOME" ? "Residencial" : '') }</span>
-                 </span>
-                <address>{item.address.street}, {item.address.number} - {item.address.district}</address>
-                <address>{item.address.city}</address> 
+                <Tag>{item.status}</Tag>
+                <Tag>{item.purpose === "RELEASE" ? "Lançamento" : (item.purpose === "HOME" ? "Residencial" : '') }</Tag>
+                 </EnterpriseContainer>
+                <Adress>{item.address.street}, {item.address.number} - {item.address.district}</Adress>
+                <Adress>{item.address.city}</Adress> 
                 </Content>
                 <ModalEdit
                 onClose={() => setShowModal(false)}
