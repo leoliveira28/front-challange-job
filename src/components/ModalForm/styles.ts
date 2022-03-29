@@ -16,7 +16,7 @@ export const Form = styled.form`
     background: #4F46BB;
     border-radius: 71px;
     align-self: center;
-    margin-top: 56px;
+    margin-top: 35px;
     margin-bottom: 35px;
 
     

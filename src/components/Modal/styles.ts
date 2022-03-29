@@ -45,7 +45,7 @@ export const StyledModalHeader = styled.div`
 export const StyledModal = styled.div`
   background: white;
   width: 500px;
-  height: 700px;
+  height: 650px;
   border-radius: 15px;
   padding: 15px;
 

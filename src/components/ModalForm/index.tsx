@@ -65,7 +65,7 @@ export function ModalForm()  {
     
   }
   
-  )//.then(() => {window.location.href='/'})
+  ).then(() => {window.location.href='/'})
      
 }
 
