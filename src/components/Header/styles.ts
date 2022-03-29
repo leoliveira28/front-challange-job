@@ -8,12 +8,14 @@ export const Container = styled.header`
 
 export const Content = styled.div`
 
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 2rem 1rem 12rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+max-width: 1172px;
+  height: 80px;
+  margin: 0 auto;
+  margin-left: 20px;
+  padding: auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
     button {
     
@@ -26,8 +28,14 @@ export const Content = styled.div`
     justify-content: flex-end;
     align-items: center;
     padding: 10px 40px;
-    width: 150px;
+    width: 160px;
     cursor: pointer;
+    
+    @media (max-width: 768px) {
+      padding: 5px 20px;
+      width: 120px;
+      margin-right: 5px;
+    }
 }
 
 

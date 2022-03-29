@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { GrClose } from 'react-icons/Gr'
 import { StyledModal, StyledModalBody, StyledModalHeader, StyledModalOverlay, StyledModalTitle } from "./styles";
-import { ModalForm } from "../ModalForm";
+
+import { EditModalForm } from "../ModalEditForm";
 
 interface ModalProps {
   show: boolean;
   onClose: () => void;
   title?: string;
+  id: string
 }
 
-const Modal = ({ show, onClose, title }: ModalProps) => {
+const Modal = ({ show, onClose, title, id }: ModalProps) => {
   
   
   const [isBrowser, setIsBrowser] = useState(false);
@@ -34,7 +36,7 @@ const Modal = ({ show, onClose, title }: ModalProps) => {
         </StyledModalHeader>
         <StyledModalTitle>{title}</StyledModalTitle>
         <StyledModalBody>{       
-         <ModalForm />
+         <EditModalForm id={id} />
       
         }</StyledModalBody>
       </StyledModal>

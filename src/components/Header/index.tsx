@@ -1,6 +1,4 @@
-import Image from 'next/image';
-import { SetStateAction, useState } from 'react';
-import { Button, Dropdown, Option } from '../Dropdown';
+import { useState } from 'react';
 import Modal from '../Modal';
 import { Container, Content } from './styles';
 
@@ -15,11 +13,9 @@ export function Header() {
                 <Modal
           onClose={() => setShowModal(false)}
           show={showModal}
-          title={'Editar Empreendimento'}
-          
-        >
-          
-        </Modal>                 
+          title={'Cadastrar Empreendimento'}
+        />
+                         
             </Content>
         </Container>
     )

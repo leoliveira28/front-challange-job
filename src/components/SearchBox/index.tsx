@@ -1,12 +1,15 @@
 import { Container } from "./styles";
 import { FiSearch } from 'react-icons/Fi';
 
-export function SearchBox() {
+interface SearchBoxProps{
+    searchInput: string;
+    setSearchInput: (value: string) => void;
+}
+export function SearchBox({searchInput, setSearchInput }:SearchBoxProps ) {
     return(
         <Container>
             <FiSearch />
-            <input type='text' placeholder='Buscar' />
-            <span />
+            <input value={searchInput} onChange={(event => setSearchInput(event.target.value))} type='text' placeholder='Buscar' />
         </Container>
     );
 }

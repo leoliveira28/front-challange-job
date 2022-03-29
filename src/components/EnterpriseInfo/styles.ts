@@ -1,28 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
-    max-width: 1140px ;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 0 auto;
-    padding: 10px;
-
-    .btn {
-    background: #4F46BB;
-    color: #fff;
-    border: 0;
-    border-radius: 71px;
-    justify-content: center;
-    height: 30px;
-    width: 150px;
-    cursor: pointer;
-    margin: 30px;
-    align-self: center;
-
-    }
 `;
 
 export const Content = styled.div`
